@@ -19,7 +19,12 @@ public class Application extends Controller {
 	
 	public static Result saveLogin(){
 		session().put("username", request().getQueryString("username"));
-		return ok(views.html.index.render(request().getQueryString("username")));		
+		return redirect("\\");		
+	}
+	
+	public static Result doLogout(){
+		session().remove("username");
+		return ok(views.html.logout.render());
 	}
 
 
