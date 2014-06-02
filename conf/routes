@@ -5,7 +5,8 @@
 GET     /                           controllers.Application.init()
 GET     /login                      controllers.Application.init()
 GET     /saveLogin					controllers.Application.saveLogin()
-GET		/logout						controllers.Application.doLogout()
+POST	/logout						controllers.Application.doLogout()
+GET 	/playScreen					controllers.Application.playScreen()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

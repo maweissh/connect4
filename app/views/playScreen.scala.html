@@ -1,0 +1,25 @@
+@(content: String)
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/vier-gewinnt.jpg")"/>
+<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/layout.css")"/>
+<title>Play Connect 4</title>
+</head>
+<body>
+	<div id="background_main">
+		<div id="logo_name" class="test_frame">
+			Connect 4
+		</div>
+		<h2>
+			<!-- login_name oder screen_name(Spielername oben) muss noch entschieden werden -->
+			<div id="screen_name" class="test_frame">
+				<h3>@content</h3>
+			</div>
+		</h2>
+	</div>
+	<div id ="screen_div" class="test_frame">meeh	</div>
+</body>
+</html>

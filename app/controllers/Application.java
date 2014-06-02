@@ -27,5 +27,8 @@ public class Application extends Controller {
 		return ok(views.html.logout.render());
 	}
 
+	public static Result playScreen(){
+		return ok(views.html.playScreen.render(session().get("username")));
+	}
 
 }
