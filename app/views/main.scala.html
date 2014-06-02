@@ -4,8 +4,8 @@
 <html>
 <head>
     <title>@title</title>
-    <link rel='shortcut icon' type='image/png' href='@routes.Assets.at("images/favicon.png")'>
-    <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))'>
+    <link rel='shortcut icon' type='image/png' href='@routes.Assets.at("images/vier-gewinnt.jpg")'>
+    <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/layout.css")"/>
     <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
     <style>
     body {
@@ -14,7 +14,7 @@
     </style>
 </head>
 <body>
-    <div class="navbar navbar-fixed-top">
+   <!--   <div class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container-fluid">
                 <a id="titleLink" class="brand" href="/">@title</a>
@@ -23,6 +23,17 @@
     </div>
     <div class="container">
         @content
-    </div>  
+    </div>  -->
+    <div id=background_main>
+    	<div id="logo_name" class="test_frame">Connect4</div>
+    
+    	<div id="main_outer_content_frame"  class="test_frame">
+    		<h2>blabla</h2>
+   	 	</div>
+    	<div >
+    	    @content
+    	</div>
+    
+    </div>    
 </body>
 </html>
