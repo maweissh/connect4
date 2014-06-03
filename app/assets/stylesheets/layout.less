@@ -46,7 +46,6 @@ h3{
 	color: #FF6600	;
 	font-size: 200%;
 	width: 150px;
-	margin-left: 2%;
 	font-weight: bolder;	 
 	}
 	
@@ -109,29 +108,60 @@ h3{
    border: 1px solid black;
 }
 
-#screen_div {
-  position: absolute;
-  display:inline-block;
-  top:100px; 
-  left:250px; 
-}
-
-#screen_name {
-  position: fixed;
-  right: 5%;
-  top: 0%;
-  color: #FF6600;
-  font-size:50%;
-}
-
 // Text im Logout-Fenster, eventuell noch schöner machen 
 .Logout_p {
   font-color: #000000;
   font-size: 200%;
 }
 
+//------------------------------------------------------Ab hier css für playScreen-------------------------------------
+#background_play_screen{
+ position: relative;
+ margin-top: 5%;
+ margin-left: 5%;
+}
+
 #table_play { 
   background:url("http://hdwallimg.com/wp-content/uploads/2014/01/Black-Wall-Wallpaper-Background.jpg");
-  padding-left: 23px;
-  padding-right: 25px;
+  position: relative;
+}
+
+#play_screen_head{
+	position: relative;	
+	width: 100%
+}
+
+#play_screen_body{
+	position: relative;
+	margin-top: 5%;	
+	width: 100%;
+}
+
+ #play_body_left{
+ 	position: relative;
+ 	background: green;
+ 	width: 25%;
+ 	float: left;
+}
+ 
+ #play_body_middle {
+	position: relative;
+ 	background: blue;
+ 	width: 50%;
+ 	float: left;
+ 	
+}
+ 
+ #play_body_right{
+ 	//padding-left:75%;
+ 	position: relative;
+ 	background-color: red;
+ 	width: 25%;
+ 	float: right;
+}
+  
+ #play_screen_name {
+ 	display: inline-block;
+ 	position: relative;
+	 
 }
