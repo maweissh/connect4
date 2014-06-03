@@ -1,7 +1,5 @@
 package controllers;
 
-import javax.servlet.http.HttpSession;
-
 import play.mvc.Controller;
 import play.mvc.Result;
 
@@ -19,6 +17,7 @@ public class Application extends Controller {
 	
 	public static Result saveLogin(){
 		session().put("username", request().getQueryString("username"));
+		//return redirect("/");
 		return ok(views.html.index.render(request().getQueryString("username")));		
 	}
 
