@@ -25,15 +25,34 @@
         @content
     </div>  -->
     <div id=background_main>
-    	<div id="logo_name" class="test_frame">Connect4</div>
-    
+    	<div id="logo_name" class="test_frame">Connect 4</div>
     	<div id="main_outer_content_frame"  class="test_frame">
-    		<h2>blabla</h2>
+    		<h2 id="how_to_h2">How to play Connect 4</h2>
+    		<br/>
+    		<p class="how_to_p"> You have to get a row of <span class="mark_text">4</span> Balls. You can do this horizentally, vertically or diagonally.
+    		<br/> 
+    		Watch out what your enemy is doing and try your best!
+    		<br/>
+    		Press the bottom below to start the Game.
+    		<br/>
+    		<br/>
+    		Good Luck!</p>
    	 	</div>
-    	<div >
-    	    @content
+   	 	<br/>
+   	 	<!-- Hier noch eine Form einfügen, damit dann auf den Play-Screen gewechselt wird -->
+   	 	<div id="play_button_div">
+   	 		<form action="http://localhost:9000/playScreen" method="get">
+   	 			<input type="submit" value="Let's play"/>
+   	 		</form>
+   	 	</div>
+    	<div>
+    	    <h2>@content</h2>
     	</div>
-    
+    	<div id="logoutButton">
+    		<form action="http://localhost:9000/logout" method="post">
+    			<input type="submit" value="Logout"/>
+    		</form>
+    	</div>
     </div>    
 </body>
 </html>
