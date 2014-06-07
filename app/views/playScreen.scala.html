@@ -20,22 +20,24 @@
 			</colgroup>
 				<tr>
 					<td>
-						<div id="logo_name" >
+						<div id="play_head_left">
+							<div id="logo_name" >
 							Connect 4
 						</div>
+						</div>						
 					</td>
+					<td></td>
 					<td>
-						
-					</td>
-					<td>
-						<div id="play_screen_name" >
+						<div id="play_head_right">
+							<div id="play_screen_name" >
 							<h3>
 							<!-- login_name oder screen_name(Spielername oben) muss noch entschieden werden -->
 								<div >
 									@content
 								</div>
 							</h3>
-						</div>
+							</div>
+						</div>						
 					</td>				
 				</tr>
 			</table>
@@ -52,7 +54,7 @@
 				</colgroup>
 				<tr>
 					<td>
-						<div id="play_body_left">
+						<div id="play_body_left" class="test_frame">
 							<p>Player One</p>
 							<p>Name: @content</p>
 							<br/>
@@ -123,7 +125,7 @@
 						</div>
 					</td>
 					<td>
-						<div id="play_body_right" >
+						<div id="play_body_right" class="test_frame">
 							<p>Player Two</p>
 							<p>Name: toImplement</p>
 							<br/>
@@ -135,7 +137,7 @@
 		</div>
 		<div id="play_logoff" class="center">
 			<form action="http://localhost:9000/" method="get">
-				<input type="submit" id="give_up" name="give_up" value="Give Up and Quit!"/>
+				<input type="submit" id="give_up" name="give_up" value="Give Up and Quit!" class="button"/>
 			</form>
 		</div>			
 	</div>

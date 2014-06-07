@@ -41,6 +41,10 @@ h3{
 }	
 
 // Divs
+#logo_main{
+	margin-left: 15%;
+}
+
 #logo_name{
 	position: relative;
 	color: #FF6600	;
@@ -57,17 +61,18 @@ h3{
 	font-size:50%;
 	}
 	
-#logoutButton {
-  position: absolute;
-  right: 12%;
-  bottom: 5%;
+#logout_button_main {
+ 	position: relative;
+} 
+
+#play_button_main {
+	margin: 2% auto;
+  	width: 250px;
 }
 
-#play_button_div {
-  align: center;
-  text-align: center;
-  margin: 0 auto;
-  width: 250px;
+#logout_button_main{
+	margin: 2% auto;
+  	width: 250px;
 }
 
 #background_login {	
@@ -84,9 +89,10 @@ h3{
   text-align: center;
   //background-color: #848484;
 	width: 250px;
-	height: 500px;
+	height: 300px;
 	margin: 0 auto;
-	margin-top: 5%;
+	padding-left: 2%;
+	padding-right: 2%;
 	}
 	 
 .inner_div_login{	
@@ -139,6 +145,18 @@ h3{
 	width: 100%;
 }
 
+#play_head_left{
+	width: 50%;
+ 	margin-left:50%;
+  	position: relative;
+}
+
+#play_head_right{
+	margin-left: 0%;
+ 	width: 50%;
+ 	position: relative;
+}
+
  #play_body_left{
  	width: 50%;
  	margin-left:50%;
@@ -180,4 +198,16 @@ h3{
 #give_up{
 	position: relative;
 	margin-top:3%;
+}
+
+//----------------------------------Buttons----------------------------------
+
+
+.button {
+	background-color:  white;
+	color: #FF6600;	 
+}
+.button:hover {
+	background-color: #FF6600;
+	color: white; 
 }
