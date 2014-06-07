@@ -12,7 +12,7 @@
 	<div id="background_play_screen" >
 	
 		<div id="play_screen_head" >
-			<table border="1" width="100%">
+			<table id="table_head">
 			<colgroup>
 				<col width= "25%">
 				<col width= "50%">
@@ -29,12 +29,12 @@
 					</td>
 					<td>
 						<div id="play_screen_name" >
-							<h2>
+							<h3>
 							<!-- login_name oder screen_name(Spielername oben) muss noch entschieden werden -->
 								<div >
-									<h3>@content</h3>
+									@content
 								</div>
-							</h2>
+							</h3>
 						</div>
 					</td>				
 				</tr>
@@ -43,71 +43,101 @@
 			
 		</div>
 	
-		<div id="play_screen_body">		
-			<div id="play_body_left">Left</div>	
-			<div id ="play_body_middle">
-				<table id="table_play">
-					<tbody>
-						<tr>
-							<td>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-															
-								<br/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-							
-								<br/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-							
-								<br/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<br/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+		<div id="play_screen_body">	
+			<table id="table_body">
+				<colgroup>
+					<col width= "25%">
+					<col width= "50%">
+					<col width= "25%">
+				</colgroup>
+				<tr>
+					<td>
+						<div id="play_body_left">
+							<p>Player One</p>
+							<p>Name: @content</p>
 							<br/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-								<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+							<p>Score:</p>
+						</div>	
+					</td>
+					<td>
+						<div id ="play_body_middle" class="center">
+							<table id="table_play" class="test_frame">
+								<tbody>
+									<tr align="center">
+										<td>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+																
+											<br/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+							
+											<br/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+							
+											<br/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<br/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<br/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
+											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
 						
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div id="play_body_right" >Right</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</td>
+					<td>
+						<div id="play_body_right" >
+							<p>Player Two</p>
+							<p>Name: toImplement</p>
+							<br/>
+							<p>Score:</p>
+						</div>
+					</td>
+				</tr>
+			</table>			
 		</div>
+		<div id="play_logoff" class="center">
+			<form action="http://localhost:9000/" method="get">
+				<input type="submit" id="give_up" name="give_up" value="Give Up and Quit!"/>
+			</form>
+		</div>			
 	</div>
 	
 </body>

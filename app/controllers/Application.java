@@ -15,10 +15,6 @@ public class Application extends Controller {
 	
 	public static Result saveLogin(){
 		session().put("username", request().getQueryString("username"));
-
-		//return redirect("/");
-		//return ok(views.html.index.render(request().getQueryString("username")));		
-
 		return redirect("/");		
 	}
 	
