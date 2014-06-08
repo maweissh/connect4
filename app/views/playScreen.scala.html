@@ -6,6 +6,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/vier-gewinnt.jpg")"/>
 <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/layout.css")"/>
+<script src="@routes.Assets.at("javascripts/jquery-1.11.1.js")"></script>
+<script src="@routes.Assets.at("javascripts/script.js")"></script>
 <title>Play Connect 4</title>
 </head>
 <body>
@@ -28,16 +30,16 @@
 					</td>
 					<td></td>
 					<td>
-						<div id="play_head_right">
+						<!-- <div id="play_head_right">
 							<div id="play_screen_name" >
 							<h3>
-							<!-- login_name oder screen_name(Spielername oben) muss noch entschieden werden -->
+							login_name oder screen_name(Spielername oben) muss noch entschieden werden
 								<div >
 									@content
 								</div>
 							</h3>
 							</div>
-						</div>						
+						</div>				 -->		
 					</td>				
 				</tr>
 			</table>
@@ -63,65 +65,149 @@
 					</td>
 					<td>
 						<div id ="play_body_middle" class="center">
-							<table id="table_play" class="test_frame">
-								<tbody>
-									<tr align="center">
-										<td>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-																
-											<br/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-							
-											<br/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-							
-											<br/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<br/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<br/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-											<img border="0" name="f70" src="@routes.Assets.at("images/vgleer.gif")"/>
-						
-										</td>
-									</tr>
-								</tbody>
-							</table>
+							<form name="play_form">
+								<table id="table_play" class="test_frame">
+									<tbody>
+										<tr align="center">	
+											<td>
+												<a id="f00" href="javascript:wurf_in(1)"><img border="0" name="f00" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a id ="f01" href="javascript:wurf_in(2)"><img border="0" name="f01" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a id ="f02" href="javascript:wurf_in(3)"><img border="0" name="f02" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a id ="f03" href="javascript:wurf_in(4)"><img border="0" name="f03" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a id ="f04" href="javascript:wurf_in(5)"><img border="0" name="f04" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a id ="f05" href="javascript:wurf_in(6)"><img border="0" name="f05" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a id ="f06" href="javascript:wurf_in(7)"><img border="0" name="f06" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<a href="javascript:wurf_in(1)"><img border="0" name="f10" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(2)"><img border="0" name="f11" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(3)"><img border="0" name="f12" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(4)"><img border="0" name="f13" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(5)"><img border="0" name="f14" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(6)"><img border="0" name="f15" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(7)"><img border="0" name="f16" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<a href="javascript:wurf_in(1)"><img border="0" name="f20" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a id ="f21" href="javascript:wurf_in(2)"><img border="0" name="f21" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(3)"><img border="0" name="f22" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(4)"><img border="0" name="f23" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(5)"><img border="0" name="f24" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(6)"><img border="0" name="f25" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(7)"><img border="0" name="f26" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+										</tr>
+											<td>
+												<a href="javascript:wurf_in(1)"><img border="0" name="f30" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(2)"><img border="0" name="f31" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(3)"><img border="0" name="f32" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(4)"><img border="0" name="f33" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(5)"><img border="0" name="f34" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(6)"><img border="0" name="f35" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(7)"><img border="0" name="f36" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<a href="javascript:wurf_in(1)"><img border="0" name="f40" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(2)"><img border="0" name="f41" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(3)"><img border="0" name="f42" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(4)"><img border="0" name="f43" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(5)"><img border="0" name="f44" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(6)"><img border="0" name="f45" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(7)"><img border="0" name="f46" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+										</tr>
+											<td>
+												<a href="javascript:wurf_in(1)"><img border="0" name="f50" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(2)"><img border="0" name="f51" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(3)"><img border="0" name="f52" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(4)"><img border="0" name="f53" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(5)"><img border="0" name="f54" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(6)"><img border="0" name="f55" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+											<td>
+												<a href="javascript:wurf_in(7)"><img border="0" name="f56" src="@routes.Assets.at("images/vgleer.gif")"/></a>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</form>
 						</div>
 					</td>
 					<td>
