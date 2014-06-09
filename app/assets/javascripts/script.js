@@ -33,4 +33,6 @@ function click(s){
 
 function receiveEvent(event){
 	$("#output").html(event.data);
+	var row = "f"+event.data+"5";
+	document.getElementById(row).childNodes[0].src = '/assets/images/vggelb.gif';
 };
