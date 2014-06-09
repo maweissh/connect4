@@ -1,14 +1,28 @@
 /**
  * The Connect 4 javascript
  */
+
 var webSocket;
 
-$(function(){
-	var WS = window["MozWebSocket"] ? MozWebSocket : WebSocket;
-	webSocket = new WS("@routes.Application.choice().webSocketURL(request)");
-	
-	webSocket.onmessage = receiveEvent;
-})
+			$(function(){
+				var WS = window["MozWebSocket"] ? MozWebSocket : WebSocket;
+				webSocket = new WS("@routes.Application.guess().webSocketURL(request)");
+				
+				webSocket.onmessage = receiveEvent;
+				
+			});
+
+
+			function sendGuess(){
+				webSocket.onmessage = receiveEvent;
+				var g = $("#guess").val();
+				webSocket.send(g);
+			};
+			
+			function receiveEvent(event){
+				$("#output").html(event.data);
+			};
+
 
 /*
  * Play Screen 
@@ -37,7 +51,7 @@ function click(s){
 //		}
 };
 
-function receiveEvent(s){
+function receiveEvent(event){
 	alert("receive");
-	$("#give_up").appendChild(s);
-}
+	$("#output").html(event.data);
+};

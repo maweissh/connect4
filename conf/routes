@@ -3,9 +3,9 @@
 # ~~~~
 
 GET     /                           controllers.Application.init()
+GET 	/guess						controllers.Application.guess()
 GET     /login                      controllers.Application.init()
 GET     /saveLogin					controllers.Application.saveLogin()
-GET 	/choice						controllers.Application.choice()
 POST	/logout						controllers.Application.doLogout()
 GET 	/playScreen					controllers.Application.playScreen()
 
