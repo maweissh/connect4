@@ -47,12 +47,9 @@ public class Application extends Controller {
 			public void onReady(WebSocket.In<String> in,
 					final WebSocket.Out<String> out) {
 				in.onMessage(new Callback<String>() {
-					public void invoke(String g) {
-						int guess = Integer.parseInt(g);
-						String res = "< secret number!";
+					public void invoke(String g) {						
 						
-						res = "correct";
-						out.write(res);
+						out.write(g);
 					}
 				});
 				in.onClose(new Callback0(){

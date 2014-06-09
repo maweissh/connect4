@@ -220,13 +220,21 @@
 			</table>			
 		</div>
 		<div id="play_logoff" class="center">
-			<form action="http://localhost:9000/playScreen" method="get">
-				<!-- <input type="submit" id="give_up" name="give_up" value="Give Up and Quit!" class="button"/> -->
+			<form action="http://localhost:9000/" method="get">
+				<input type="submit" id="give_up" name="give_up" value="Give Up and Quit!" class="button"/>
 			</form>
-			<p> <input id="guess" name="guess" type="number" autofocus /> <span id="output" /> </p>
-				<input type="button" value="Submit" onclick="sendGuess()"/>
-			<script type="text/javascript">
+			<span id="output"/>
 			
+			<script type="text/javascript">
+				var webSocket;
+
+				$(document).ready(function(){
+					var WS = window["MozWebSocket"] ? MozWebSocket : WebSocket;
+					webSocket = new WS("@routes.Application.guess().webSocketURL(request)");
+				
+					webSocket.onmessage = receiveEvent;
+				
+				});
 			</script>
 			
 		</div>			

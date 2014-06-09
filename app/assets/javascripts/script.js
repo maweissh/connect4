@@ -1,28 +1,6 @@
 /**
  * The Connect 4 javascript
- */
-
-var webSocket;
-
-			$(function(){
-				var WS = window["MozWebSocket"] ? MozWebSocket : WebSocket;
-				webSocket = new WS("@routes.Application.guess().webSocketURL(request)");
-				
-				webSocket.onmessage = receiveEvent;
-				
-			});
-
-
-			function sendGuess(){
-				webSocket.onmessage = receiveEvent;
-				var g = $("#guess").val();
-				webSocket.send(g);
-			};
-			
-			function receiveEvent(event){
-				$("#output").html(event.data);
-			};
-
+ */	
 
 /*
  * Play Screen 
@@ -30,8 +8,10 @@ var webSocket;
 function wurf_in(s) { click(s-1);}
 
 function click(s){
-		
+		webSocket.onmessage = receiveEvent;
 		webSocket.send(s);
+		
+		
 //	var requestObj = new XMLHttpRequest();
 //	requestObj.onreadystatechange = function(){
 //		if(requestObj.readyState == 4 && requestObj.status == 200){
@@ -52,6 +32,5 @@ function click(s){
 };
 
 function receiveEvent(event){
-	alert("receive");
 	$("#output").html(event.data);
 };
