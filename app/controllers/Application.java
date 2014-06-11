@@ -1,6 +1,9 @@
 package controllers;
 
 import java.util.HashMap;
+import java.util.Map;
+
+import com.fasterxml.jackson.databind.node.ArrayNode;
 
 import play.libs.F.Callback;
 import play.libs.F.Callback0;
@@ -10,7 +13,7 @@ import play.mvc.WebSocket;
 
 public class Application extends Controller {
 
-	private static HashMap<Integer, String> playerList = new HashMap<Integer, String>();
+	private static Map<Integer, WebSocket.Out<String>> playerList = new HashMap<Integer, WebSocket.Out<String>>();
 
 	public static Result init() {
 
@@ -23,9 +26,6 @@ public class Application extends Controller {
 
 	public static Result saveLogin() {
 		session().put("username", request().getQueryString("username"));
-		if (session().size() <= 2) {
-			playerList.put(1, request().getQueryString("username"));
-		}
 		return redirect("/");
 	}
 
@@ -48,12 +48,19 @@ public class Application extends Controller {
 					final WebSocket.Out<String> out) {
 				in.onMessage(new Callback<String>() {
 					public void invoke(String g) {						
-						
-						out.write(g);
+						if(playerList.isEmpty()){
+							playerList.put(1, out);
+						} else {
+							playerList.put(2, out);
+						}
+						for(WebSocket.Out<String> channel : playerList.values()){
+							channel.write(g);
+						}
 					}
 				});
 				in.onClose(new Callback0(){
 					public void invoke() {
+						out.close();
 						System.out.println("Disconnected!");
 					}
 				});
