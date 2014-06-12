@@ -21,7 +21,7 @@ public class Application extends Controller {
 	public static Result init() {
 		
 		// before the PlayScreen
-		if (!users.containsValue(request().getQueryString("username"))) {
+		if (!session().containsKey("username")) {
 			return ok(views.html.login.render());
 		} else {
 			return ok(views.html.index.render(session().get("username")));
@@ -32,37 +32,37 @@ public class Application extends Controller {
 		if(users.size() >= 2){
 			return badRequest("Sorry alles voll");
 		}
-		if(!users.containsValue(request().getQueryString("username"))){
+		
+		if(!users.containsKey(request().getQueryString("username"))){
 			if (users.isEmpty()){
 				session().put("username", request().getQueryString("username"));
 				users.put(session().get("username"), "player1");
-				System.out.println(users.size());
-				System.out.println("-----");
-				System.out.println(users.get(session().get("username")));
 				
-				return ok(views.html.index.render(users.get(session().get("username"))));
+				return ok(views.html.index.render(session().get("username")));
 			} else {
 				session().put("username", request().getQueryString("username"));
 				users.put(session().get("username"), "player2");
-				return ok(views.html.index.render(users.get(session().get("username"))));
+				return ok(views.html.index.render(session().get("username")));
 			}	
 		} 
 		
-		//session().put("username", request().getQueryString("username"));
 		return badRequest("Sorry Name is not available.");
 	}
 
 	public static Result doLogout() {
 		System.out.println("DoLogout " + users.get(session().get("username")));
 		users.remove(session().get("username"));
-		session().clear();
+		session().remove("username");
 		return ok(views.html.logout.render());
 	}
 
 	public static Result playScreen() {
 		if(!session().containsKey("username")){
+			
 			return ok(views.html.login.render());
 		} else {
+			System.out.println(!session().containsKey("username"));
+			System.out.println(session().get("username"));
 			return ok(views.html.playScreen.render(session().get("username"), users.get(session().get("username"))));
 		}
 					
