@@ -2,10 +2,6 @@ package controllers;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import com.fasterxml.jackson.databind.node.ArrayNode;
-
-import play.Logger;
 import play.libs.F.Callback;
 import play.libs.F.Callback0;
 import play.mvc.Controller;
@@ -50,7 +46,6 @@ public class Application extends Controller {
 	}
 
 	public static Result doLogout() {
-		System.out.println("DoLogout " + users.get(session().get("username")));
 		users.remove(session().get("username"));
 		session().remove("username");
 		return ok(views.html.logout.render());
@@ -61,9 +56,13 @@ public class Application extends Controller {
 			
 			return ok(views.html.login.render());
 		} else {
-			System.out.println(!session().containsKey("username"));
-			System.out.println(session().get("username"));
-			return ok(views.html.playScreen.render(session().get("username"), users.get(session().get("username"))));
+			String op;
+			if (users.get(session().get("username")).equals("player1")) {
+				op = "player2";
+			}else{
+				op="player1";
+			}
+			return ok(views.html.playScreen.render(session().get("username"), users.get(session().get("username")),op));
 		}
 					
 	}
