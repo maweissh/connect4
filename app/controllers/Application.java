@@ -3,9 +3,6 @@ package controllers;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.fasterxml.jackson.databind.node.ArrayNode;
-
-import play.Logger;
 import play.libs.F.Callback;
 import play.libs.F.Callback0;
 import play.mvc.Controller;
@@ -17,11 +14,9 @@ public class Application extends Controller {
 	private static Map<Integer, WebSocket.Out<String>> playerList = new HashMap<Integer, WebSocket.Out<String>>();
 	private static Map<String, String> users = new HashMap<String, String>();
 	
-	
 	public static Result init() {
-		
 		// before the PlayScreen
-		if (!users.containsValue(request().getQueryString("username"))) {
+		if (!session().containsKey("username")) {
 			return ok(views.html.login.render());
 		} else {
 			return ok(views.html.index.render(session().get("username")));
@@ -32,30 +27,23 @@ public class Application extends Controller {
 		if(users.size() >= 2){
 			return badRequest("Sorry alles voll");
 		}
-		if(!users.containsValue(request().getQueryString("username"))){
+		if(!users.containsKey(request().getQueryString("username"))){
 			if (users.isEmpty()){
 				session().put("username", request().getQueryString("username"));
 				users.put(session().get("username"), "player1");
-				System.out.println(users.size());
-				System.out.println("-----");
-				System.out.println(users.get(session().get("username")));
-				
-				return ok(views.html.index.render(users.get(session().get("username"))));
+				return ok(views.html.index.render(session().get("username")));
 			} else {
 				session().put("username", request().getQueryString("username"));
 				users.put(session().get("username"), "player2");
-				return ok(views.html.index.render(users.get(session().get("username"))));
+				return ok(views.html.index.render(session().get("username")));
 			}	
 		} 
-		
-		//session().put("username", request().getQueryString("username"));
 		return badRequest("Sorry Name is not available.");
 	}
 
 	public static Result doLogout() {
-		System.out.println("DoLogout " + users.get(session().get("username")));
 		users.remove(session().get("username"));
-		session().clear();
+		session().remove("username");
 		return ok(views.html.logout.render());
 	}
 

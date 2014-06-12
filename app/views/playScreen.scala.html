@@ -233,7 +233,6 @@
 		<div id="play_logoff" class="center">
 			<form action="http://localhost:9000/" method="get">
 				<input type="submit" id="give_up" name="give_up" value="Give Up and Quit!" class="button"/>
-				<input type="text" id="hiddenText" name="user" value="@content"/>
 			</form>
 			<span id="output"/>
 			
@@ -241,7 +240,6 @@
 				var webSocket;
 
 				$(document).ready(function(){
-					$("#hiddenText").hide();
 					
 					var WS = window["MozWebSocket"] ? MozWebSocket : WebSocket;
 					webSocket = new WS("@routes.Application.guess().webSocketURL(request)");				
