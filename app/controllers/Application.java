@@ -29,18 +29,22 @@ public class Application extends Controller {
 	}
 
 	public static Result saveLogin() {
+		if(users.size() >= 2){
+			return badRequest("Sorry alles voll");
+		}
 		if(!users.containsValue(request().getQueryString("username"))){
 			if (users.isEmpty()){
-				users.put("player1", request().getQueryString("username"));
+				session().put("username", request().getQueryString("username"));
+				users.put(session().get("username"), "player1");
 				System.out.println(users.size());
 				System.out.println("-----");
-				System.out.println(users.get("player1"));
-				session().put("player1", request().getQueryString("username"));
-				return ok(views.html.index.render(users.get("player1")));
+				System.out.println(users.get(session().get("username")));
+				
+				return ok(views.html.index.render(users.get(session().get("username"))));
 			} else {
-				users.put("player2", request().getQueryString("username"));
-				session().put("player2", request().getQueryString("username"));
-				return ok(views.html.index.render(users.get("player2")));
+				session().put("username", request().getQueryString("username"));
+				users.put(session().get("username"), "player2");
+				return ok(views.html.index.render(users.get(session().get("username"))));
 			}	
 		} 
 		
@@ -49,26 +53,19 @@ public class Application extends Controller {
 	}
 
 	public static Result doLogout() {
-		if(request().getQueryString("user").equalsIgnoreCase(users.get("player1"))){
-			users.remove("player1");
-			session().remove("player1");
-		} else {
-			users.remove("player2");
-			session().remove("player2");
-		}
-				
-		//session().remove("username");
+		System.out.println("DoLogout " + users.get(session().get("username")));
+		users.remove(session().get("username"));
+		session().clear();
 		return ok(views.html.logout.render());
-
 	}
 
 	public static Result playScreen() {
-		if(session().get("player1").equalsIgnoreCase(users.get("player1"))){
-			return ok(views.html.playScreen.render(session().get("player1")));
+		if(!session().containsKey("username")){
+			return ok(views.html.login.render());
 		} else {
-			return ok(views.html.playScreen.render(session().get("player2")));
+			return ok(views.html.playScreen.render(session().get("username"), users.get(session().get("username"))));
 		}
-		
+					
 	}
 
 	public static WebSocket<String> guess() {
