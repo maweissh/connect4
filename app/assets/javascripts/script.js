@@ -10,7 +10,7 @@ function wurf_in(s) {
 }
 
 function click(s) {
-	webSocket.onmessage = receiveEvent;
+	//webSocket.onmessage = receiveEvent;
 	webSocket.send(s);
 	
 };

@@ -15,13 +15,51 @@ public class Connect4Logic {
 		return "column is full";
 	}
 	
-	public static void checkVictory(String c, String r, String player){
-		int column = Integer.parseInt(c);
-		int row = Integer.parseInt(r);
+	public static int checkVictory(){
+		System.out.println("in victory");
+		int p1 =0;
+		int p2 =0;
+		
+		for (int r = 0; r < 6; r++) {
+			for (int c = 0; c < 7; c++) {
+				if (array[r][c]==null) {
+					continue;
+				} else {
+					if (array[r][c].equals("player1")) {
+						if (p2>0) {
+							p2=0;
+						}
+						p1++;
+						if (p1 == 4) {
+							return 1;
+						}
+					} else {
+						if (p1>0) {
+							p1=0;
+						}
+						p2++;
+						if (p2 == 4) {
+							return 2;
+						}
+					}
+				}
+				
+			}
+		}
+		return 0;
 		
 	}
 	
 	public static void clearArray(){
+		try {
+			for (int c = 0; c < 7; c++) {
+				for (int r = 0; r < 6; r++) {
+					array[c][r] = null;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		
 	}
 }

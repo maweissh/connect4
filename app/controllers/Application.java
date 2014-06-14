@@ -82,6 +82,7 @@ public class Application extends Controller {
 							player = "z";
 						}
 						
+												
 						if (playerList.isEmpty()) {
 							playerList.put(in.toString(), out);
 						}else if(!playerList.containsKey(in.toString())){
@@ -89,6 +90,9 @@ public class Application extends Controller {
 						}
 						
 						String row = Connect4Logic.addChip(column, player);
+//						System.out.println("vor victory");
+//						int victory = Connect4Logic.checkVictory();
+//					    System.out.println(victory);
 						
 						for(WebSocket.Out<String> channel : playerList.values()){
 							channel.write(player+column+ row);
@@ -98,6 +102,7 @@ public class Application extends Controller {
 				});
 				in.onClose(new Callback0(){
 					public void invoke() {
+						Connect4Logic.clearArray();
 						playerList.clear();
 						out.close();
 						System.out.println("Disconnected!");

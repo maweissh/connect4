@@ -251,9 +251,10 @@
 					
 					var WS = window["MozWebSocket"] ? MozWebSocket : WebSocket;
 					 
-					webSocket = new WS("@routes.Application.guess(player).webSocketURL(request)");				
-					webSocket.onmessage = receiveEvent;	
-								
+					webSocket = new WS("@routes.Application.guess(player).webSocketURL(request)");	
+					
+					webSocket.onmessage = receiveEvent;
+													
 				});
 			</script>
 			
