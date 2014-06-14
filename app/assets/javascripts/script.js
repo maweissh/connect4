@@ -17,7 +17,7 @@ function click(s) {
 
 function receiveEvent(event) {
 	$("#output").html(event.data);
-	var row = "f" + event.data.charAt(1) + "5";
+	var row = "f" + event.data.charAt(1) + event.data.charAt(2);
 		
 	if (event.data.charAt(0)=="e") {
 		document.getElementById(row).childNodes[0].src = '/assets/images/vggelb.gif';

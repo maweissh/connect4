@@ -8,6 +8,7 @@ import play.libs.F.Callback0;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.WebSocket;
+import models.*;
 
 public class Application extends Controller {
 
@@ -72,10 +73,8 @@ public class Application extends Controller {
 			public void onReady(final WebSocket.In<String> in,
 					final WebSocket.Out<String> out) {
 				in.onMessage(new Callback<String>() {
-					public void invoke(String g) {
+					public void invoke(String column) {
 						
-						System.out.println(username); 
-						System.out.println("in Websocket");
 						String player;
 						if (username.equals("player1")) {
 							player = "e";
@@ -89,8 +88,10 @@ public class Application extends Controller {
 							playerList.put(in.toString(), out);
 						}
 						
+						String row = Connect4Logic.addChip(column, player);
+						
 						for(WebSocket.Out<String> channel : playerList.values()){
-							channel.write(player+g);
+							channel.write(player+column+ row);
 						}
 					}
 					
