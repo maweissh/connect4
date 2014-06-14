@@ -59,7 +59,7 @@
 							<p>@content</p>
 							<br/>
 							<p>Score:</p>
-						</div>	
+							</div>							
 					</td>
 					<td>
 						<div id ="play_body_middle" class="center">
@@ -238,8 +238,17 @@
 			
 			<script type="text/javascript">
 				var webSocket;
-
-				$(document).ready(function(){					
+				
+				$(document).ready(function(){
+										
+					if("@player"=="player1"){
+						$("#play_body_left").css("background-color", "yellow");
+						$("#play_body_right").css("background-color", "red")
+					}else{
+						$("#play_body_left").css("background-color", "red");
+						$("#play_body_right").css("background-color", "yellow")
+					} 
+					
 					var WS = window["MozWebSocket"] ? MozWebSocket : WebSocket;
 					 
 					webSocket = new WS("@routes.Application.guess(player).webSocketURL(request)");				
