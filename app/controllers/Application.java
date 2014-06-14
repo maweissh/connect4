@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import play.libs.F.Callback;
 import play.libs.F.Callback0;
 import play.mvc.Controller;
@@ -10,10 +11,9 @@ import play.mvc.WebSocket;
 
 public class Application extends Controller {
 
-	private static Map<Integer, WebSocket.Out<String>> playerList = new HashMap<Integer, WebSocket.Out<String>>();
+	private static Map<String, WebSocket.Out<String>> playerList = new HashMap<String, WebSocket.Out<String>>();
 	private static Map<String, String> users = new HashMap<String, String>();
-	
-	
+		
 	public static Result init() {
 		
 		// before the PlayScreen
@@ -67,26 +67,37 @@ public class Application extends Controller {
 					
 	}
 
-	public static WebSocket<String> guess() {
+	public static WebSocket<String> guess(final String username) {
 		return new WebSocket<String>() {
-			public void onReady(WebSocket.In<String> in,
+			public void onReady(final WebSocket.In<String> in,
 					final WebSocket.Out<String> out) {
 				in.onMessage(new Callback<String>() {
-					public void invoke(String g) {						
-						if(playerList.isEmpty()){
-							playerList.put(1, out);
-							System.out.println(users.get("player1"));
-						} else {
-							playerList.put(2, out);
-							System.out.println(users.get("player2"));
+					public void invoke(String g) {
+						
+						System.out.println(username); 
+						System.out.println("in Websocket");
+						String player;
+						if (username.equals("player1")) {
+							player = "e";
+						}else{
+							player = "z";
 						}
+						
+						if (playerList.isEmpty()) {
+							playerList.put(in.toString(), out);
+						}else if(!playerList.containsKey(in.toString())){
+							playerList.put(in.toString(), out);
+						}
+						
 						for(WebSocket.Out<String> channel : playerList.values()){
-							channel.write(g);
+							channel.write(player+g);
 						}
 					}
+					
 				});
 				in.onClose(new Callback0(){
 					public void invoke() {
+						playerList.clear();
 						out.close();
 						System.out.println("Disconnected!");
 					}

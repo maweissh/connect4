@@ -55,7 +55,7 @@
 				<tr>
 					<td>
 						<div id="play_body_left" class="test_frame">
-							<p>@player</p>
+							<p id="player">@player</p>
 							<p>@content</p>
 							<br/>
 							<p>Score:</p>
@@ -239,10 +239,10 @@
 			<script type="text/javascript">
 				var webSocket;
 
-				$(document).ready(function(){
-					
+				$(document).ready(function(){					
 					var WS = window["MozWebSocket"] ? MozWebSocket : WebSocket;
-					webSocket = new WS("@routes.Application.guess().webSocketURL(request)");				
+					 
+					webSocket = new WS("@routes.Application.guess(player).webSocketURL(request)");				
 					webSocket.onmessage = receiveEvent;	
 								
 				});
