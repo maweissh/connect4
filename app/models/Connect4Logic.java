@@ -15,39 +15,47 @@ public class Connect4Logic {
 		return "column is full";
 	}
 	
-	public static int checkVictory(){
-		System.out.println("in victory");
+	public static int checkVictory(){	
 		int p1 =0;
 		int p2 =0;
-		
-		for (int r = 0; r < 6; r++) {
-			for (int c = 0; c < 7; c++) {
-				if (array[r][c]==null) {
-					continue;
-				} else {
-					if (array[r][c].equals("player1")) {
-						if (p2>0) {
-							p2=0;
-						}
-						p1++;
-						if (p1 == 4) {
-							return 1;
-						}
+		try {
+			for (int r = 0; r < 6; r++) {
+				p1=0;
+				p2=0;
+				for (int c = 0; c < 7; c++) {
+					if (array[c][r]==null) {
+						p1=0;
+						p2=0;
+						continue;
 					} else {
-						if (p1>0) {
-							p1=0;
-						}
-						p2++;
-						if (p2 == 4) {
-							return 2;
+						if (array[c][r].equals("e")) {
+							if (p2>0) {
+								p2=0;
+							}
+							p1++;
+							if (p1 == 4) {
+								return 1;
+							}
+						} else {
+							if (p1>0) {
+								p1=0;
+							}
+							p2++;
+							if (p2 == 4) {
+								return 2;
+							}
 						}
 					}
+					
 				}
-				
 			}
+			return 0;
+		} catch (Exception e) {
+			System.out.println("problem in victory");
+			e.printStackTrace();
 		}
-		return 0;
 		
+		return 0;
 	}
 	
 	public static void clearArray(){
