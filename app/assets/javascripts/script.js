@@ -27,10 +27,20 @@ function receiveEvent(event) {
 	
 };
 
-function hover(element){
-	element.setAttribute('src', '/assets/images/choice.gif');
+function hover(element, row){
+	if(element.indexOf("pic") > -1){
+		document.getElementsByName(element)[row].src = '/assets/images/choice.gif';
+		document.getElementsByName(element)[row].style.opacity = "1.0";
+	} else {
+		element.setAttribute('src', '/assets/images/choice.gif');
+	}	
 }
 
-function unhover(value){
-	element.setAttribute('src', '/assets/images/choice_stabil.gif');
+function unhover(element, row){
+	if(element.indexOf("pic") > -1){
+		document.getElementsByName(element)[row].src = '/assets/images/choice_stabil.gif';
+		document.getElementsByName(element)[row].style.opacity = "0.5";
+	} else {
+		element.setAttribute('src', '/assets/images/choice_stabil.gif');
+	}
 };
