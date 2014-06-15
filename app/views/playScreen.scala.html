@@ -67,13 +67,13 @@
 								<table id="table_play" class="test_frame">
 									<tbody>
 										<tr align="center">
-											<td><img border = "0" id="opacityPic" hover="changeOpacity()" name="opacityPic" src="@routes.Assets.at("images/yellow_circle.gif")"/></td>
-											<td><img border = "0" id="opacityPic" hover="changeOpacity()" name="opacityPic" src="@routes.Assets.at("images/yellow_circle.gif")"/></td>
-											<td><img border = "0" id="opacityPic" hover="changeOpacity()" name="opacityPic" src="@routes.Assets.at("images/yellow_circle.gif")"/></td>
-											<td><img border = "0" id="opacityPic" hover="changeOpacity()" name="opacityPic" src="@routes.Assets.at("images/yellow_circle.gif")"/></td>
-											<td><img border = "0" id="opacityPic" hover="changeOpacity()" name="opacityPic" src="@routes.Assets.at("images/yellow_circle.gif")"/></td>
-											<td><img border = "0" id="opacityPic" hover="changeOpacity()" name="opacityPic" src="@routes.Assets.at("images/yellow_circle.gif")"/></td>
-											<td><img border = "0" id="opacityPic" hover="changeOpacity()" name="opacityPic" src="@routes.Assets.at("images/yellow_circle.gif")"/></td>
+											<td><img border="0" onmouseover="hover(this)" onmouseout="unhover(this)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover(this)" onmouseout="unhover(this)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover(this)" onmouseout="unhover(this)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover(this)" onmouseout="unhover(this)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover(this)" onmouseout="unhover(this)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover(this)" onmouseout="unhover(this)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover(this)" onmouseout="unhover(this)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
 										</tr>
 										<tr align="center">	
 											<td>
@@ -254,7 +254,11 @@
 					webSocket = new WS("@routes.Application.guess(player).webSocketURL(request)");	
 					
 					webSocket.onmessage = receiveEvent;
-													
+					if(confirm("Press a button!") == true){
+						click("init");
+					} else {
+						history.back();
+					}						
 				});
 			</script>
 			

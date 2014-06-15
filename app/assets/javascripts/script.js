@@ -27,3 +27,10 @@ function receiveEvent(event) {
 	
 };
 
+function hover(element){
+	element.setAttribute('src', '/assets/images/choice.gif');
+}
+
+function unhover(value){
+	element.setAttribute('src', '/assets/images/choice_stabil.gif');
+};
