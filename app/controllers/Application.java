@@ -74,7 +74,7 @@ public class Application extends Controller {
 					final WebSocket.Out<String> out) {
 				in.onMessage(new Callback<String>() {
 					public void invoke(String column) {
-						
+						System.out.println(column);
 						String player;
 						if (username.equals("player1")) {
 							player = "e";
@@ -82,23 +82,23 @@ public class Application extends Controller {
 							player = "z";
 						}
 						
-												
-						if (playerList.isEmpty()) {
-							playerList.put(in.toString(), out);
-						}else if(!playerList.containsKey(in.toString())){
-							playerList.put(in.toString(), out);
+						if(column.equals("init")){
+							if (playerList.isEmpty()) {
+								playerList.put(in.toString(), out);
+							}else if(!playerList.containsKey(in.toString())){
+								playerList.put(in.toString(), out);
+							}
+						} else {
+							String row = Connect4Logic.addChip(column, player);
+//							System.out.println("vor victory");
+//							int victory = Connect4Logic.checkVictory();
+//						    System.out.println(victory);
+							
+							for(WebSocket.Out<String> channel : playerList.values()){
+								channel.write(player+column+ row);
+							}
 						}
-						
-						String row = Connect4Logic.addChip(column, player);
-//						System.out.println("vor victory");
-//						int victory = Connect4Logic.checkVictory();
-//					    System.out.println(victory);
-						
-						for(WebSocket.Out<String> channel : playerList.values()){
-							channel.write(player+column+ row);
-						}
-					}
-					
+					}	
 				});
 				in.onClose(new Callback0(){
 					public void invoke() {
