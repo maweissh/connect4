@@ -27,7 +27,7 @@ public class Application extends Controller {
 
 	public static Result saveLogin() {
 		if(users.size() >= 2){
-			return badRequest(views.html.error.render());
+			return badRequest(views.html.error.render("Sorry, but there is already a Game running..."));
 		}
 		
 		if(!users.containsKey(request().getQueryString("username"))){
@@ -43,7 +43,7 @@ public class Application extends Controller {
 			}	
 		} 
 		
-		return badRequest(views.html.error.render());
+		return badRequest(views.html.error.render("The Nickname '" + request().getQueryString("username") + "' is not available. Please choose a different one."));
 	}
 
 	public static Result doLogout() {

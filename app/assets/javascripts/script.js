@@ -67,7 +67,7 @@ function doDivColor(gamer){
 };
 
 function disableMouseCursor(text){
-	document.body.style.cursor = none;
+	document.body.style.cursor = not-allowed;
 };
 function enableMouseCursor(){
 	document.body.style.cursor = auto;
