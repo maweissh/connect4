@@ -67,13 +67,13 @@
 								<table id="table_play" class="test_frame">
 									<tbody>
 										<tr align="center">
-											<td><img border="0" onmouseover="hover(this, 0)" onmouseout="unhover(this, 0)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
-											<td><img border="0" onmouseover="hover(this, 1)" onmouseout="unhover(this, 1)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
-											<td><img border="0" onmouseover="hover(this, 2)" onmouseout="unhover(this, 2)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
-											<td><img border="0" onmouseover="hover(this, 3)" onmouseout="unhover(this, 3)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
-											<td><img border="0" onmouseover="hover(this, 4)" onmouseout="unhover(this, 4)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
-											<td><img border="0" onmouseover="hover(this, 5)" onmouseout="unhover(this, 5)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
-											<td><img border="0" onmouseover="hover(this, 6)" onmouseout="unhover(this, 6)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover('pic', 0)" onmouseout="unhover('pic', 0)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover('pic', 1)" onmouseout="unhover('pic', 1)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover('pic', 2)" onmouseout="unhover('pic', 2)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover('pic', 3)" onmouseout="unhover('pic', 3)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover('pic', 4)" onmouseout="unhover('pic', 4)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover('pic', 5)" onmouseout="unhover('pic', 5)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
+											<td><img border="0" onmouseover="hover('pic', 6)" onmouseout="unhover('pic', 6)" id="opacityPic" name="pic" src="@routes.Assets.at("images/choice_stabil.gif")"/></td>
 										</tr>
 										<tr align="center">	
 											<td>
@@ -238,32 +238,23 @@
 			
 			<script type="text/javascript">
 				var webSocket;
+				var player = "@player";
 				
 				$(document).ready(function(){
-					//Dynamisches einfärben der player divs					
-					if("@player"=="player1"){
-						$("#play_body_left").css("background-color", "yellow");
-						$("#play_body_right").css("background-color", "red")
-					}else{
-						$("#play_body_left").css("background-color", "red");
-						$("#play_body_right").css("background-color", "yellow")
-					} 
-					
+					doDivColor(player);
 					var WS = window["MozWebSocket"] ? MozWebSocket : WebSocket;
 					 
 					webSocket = new WS("@routes.Application.guess(player).webSocketURL(request)");	
 					
 					webSocket.onmessage = receiveEvent;
-					if(confirm("Press a button!") == true){
+					if(confirm("If you are ready, please press 'OK'!") == true){
 						click("init");
 					} else {
 						history.back();
-					}						
+					}
 				});
 			</script>
-			
 		</div>			
 	</div>
-	
 </body>
 </html>

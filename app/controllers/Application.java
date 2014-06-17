@@ -27,7 +27,7 @@ public class Application extends Controller {
 
 	public static Result saveLogin() {
 		if(users.size() >= 2){
-			return badRequest("Sorry alles voll");
+			return badRequest(views.html.error.render());
 		}
 		
 		if(!users.containsKey(request().getQueryString("username"))){
@@ -43,7 +43,7 @@ public class Application extends Controller {
 			}	
 		} 
 		
-		return badRequest("Sorry Name is not available.");
+		return badRequest(views.html.error.render());
 	}
 
 	public static Result doLogout() {
@@ -69,6 +69,7 @@ public class Application extends Controller {
 	}
 
 	public static WebSocket<String> guess(final String username) {
+
 		return new WebSocket<String>() {
 			public void onReady(final WebSocket.In<String> in,
 					final WebSocket.Out<String> out) {
@@ -77,16 +78,21 @@ public class Application extends Controller {
 						System.out.println(column);
 						String player;
 						if (username.equals("player1")) {
-							player = "e";
+							player = "eins";
 						}else{
-							player = "z";
+							player = "zwei";
 						}
 						
+						// init a webSocket Connection at the start of the game
 						if(column.equals("init")){
 							if (playerList.isEmpty()) {
 								playerList.put(in.toString(), out);
 							}else if(!playerList.containsKey(in.toString())){
 								playerList.put(in.toString(), out);
+							}
+							// return the position of the gamer to control the blur effect of the div at the start
+							for(WebSocket.Out<String> channel : playerList.values()){
+								channel.write(username.toUpperCase().toString());
 							}
 						} else {
 							String row = Connect4Logic.addChip(column, player);
@@ -95,7 +101,8 @@ public class Application extends Controller {
 //						    System.out.println(victory);
 							
 							for(WebSocket.Out<String> channel : playerList.values()){
-								channel.write(player+column+ row);
+								// return the gamer which had clicked on the playfield and where
+								channel.write(username.toUpperCase().toString() + "," + player + ","+ column + "," + row);
 							}
 						}
 					}	
