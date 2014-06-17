@@ -3,12 +3,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/vier-gewinnt.png")"/>
-<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/layout.css")"/>
-<script src="@routes.Assets.at("javascripts/jquery-1.11.1.js")"></script>
-<script src="@routes.Assets.at("javascripts/script.js")"></script>
-<title>Connect 4</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+	<link rel="shortcut icon" type="image/png" href="@routes.Assets.at("images/vier-gewinnt.png")"/>
+	<link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/layout.css")"/>
+	<script src="@routes.Assets.at("javascripts/jquery-1.11.1.js")"></script>
+	<script src="@routes.Assets.at("javascripts/script.js")"></script>
+	<title>Connect 4</title>
 </head>
 <body>
 	<div id="background_play_screen" >
@@ -23,24 +23,11 @@
 				<tr>
 					<td>
 						<div id="play_head_left">
-							<div id="logo_name" >
-							Connect 4
-						</div>
+							<div id="logo_name" >Connect 4</div>
 						</div>						
 					</td>
 					<td></td>
-					<td>
-						<!-- <div id="play_head_right">
-							<div id="play_screen_name" >
-							<h3>
-							login_name oder screen_name(Spielername oben) muss noch entschieden werden
-								<div >
-									@content
-								</div>
-							</h3>
-							</div>
-						</div>				 -->		
-					</td>				
+					<td></td>				
 				</tr>
 			</table>
 		</div>
@@ -55,10 +42,9 @@
 				<tr>
 					<td>
 						<div id="play_body_left" class="test_frame">
-							<p id="player">@player</p>
-							<p>@content</p>
+							<p class="player">@player</p>
+							<p class="playername">@content</p>
 							<br/>
-							<p>Score:</p>
 							</div>							
 					</td>
 					<td>
@@ -221,10 +207,9 @@
 					</td>
 					<td>
 						<div id="play_body_right" class="test_frame">
-							<p>@otherPlayer</p>
-							<p>Name: toImplement</p>
+							<p class="player">@otherPlayer</p>
+							<p class="playername">Enemy</p>
 							<br/>
-							<p>Score:</p>
 						</div>
 					</td>
 				</tr>

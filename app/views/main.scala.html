@@ -7,50 +7,64 @@
     <link rel='shortcut icon' type='image/png' href='@routes.Assets.at("images/vier-gewinnt.png")'>
     <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/layout.css")"/>
     <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
-    <style>
-    body {
-        margin-top: 50px;
-    }
-    </style>
 </head>
 <body>
-   <!--   <div class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container-fluid">
-                <a id="titleLink" class="brand" href="/">@title</a>
-            </div>
-        </div>
-    </div>
-    <div class="container">
-        @content
-    </div>  -->
-    <div id=background_main>
-    	<div id="logo_main">
-    		<div id="logo_name">Connect 4</div>
+    <div id="background_main">
+    	<div id="play_screen_head">
+    		<table id="table_head">
+    			<colgroup>
+					<col width= "25%">
+					<col width= "50%">
+					<col width= "25%">
+				</colgroup>
+    			<tr>
+    				<td>
+    					<div id="play_head_left">
+    						<div id="logo_name">Connect 4</div>
+    					</div>
+    				</td>
+    				<td></td>
+    				<td></td>
+    			</tr>
+    		</table>
     	</div>
-    	<div id="main_outer_content_frame"  class="test_frame">
-    		<h2 id="how_to_h2">How to play Connect 4</h2>
-    		<p class="how_to_p"> You have to get a row of <span class="mark_text">4</span> Balls. You can do this horizentally, vertically or diagonally.
-    		<br/> 
-    		Watch out what your enemy is doing and try your best!
-    		<br/>
-    		Press the bottom below to start the Game.
-    		<br/>
-    		<br/>
-    		Good Luck!</p>
-   	 	</div>   	 	
-   	 	<div id="play_button_main" class="center">
-   	 		<form action="http://localhost:9000/playScreen" method="get">
-   	 			<input type="submit" value="Let's play" class="button"/>
-   	 		</form>
-   	 	</div>
-    	<div>
-    	    <h2>@content</h2>
-    	</div>
-    	<div id="logout_button_main" class="center">
-    		<form action="http://localhost:9000/logout" method="get">
-    			<input type="submit" value="Logout" class="button"/>
-    		</form>
+    	
+    	<div id="play_screen_body">
+    		<table id="table_body">
+    			<colgroup>
+					<col width= "25%">
+					<col width= "50%">
+					<col width= "25%">
+				</colgroup>
+				<tr>
+					<td></td>
+					<td>
+						<div id="main_outer_content_frame" class="test_frame">
+							<h2 id="how_to_h2">How to play Connect 4</h2>
+    						<p class="how_to_p"> You have to get a row of <span class="mark_text">4</span> Balls. You can do this horizentally, vertically or diagonally.
+    						<br/> 
+    						Watch out what your enemy is doing and try your best!
+    						<br/>
+    						Press the bottom below to start the Game.
+    						<br/>
+    						<br/>
+    						Good Luck!</p>
+   	 					</div>
+   	 					<div id="play_button_main" class="center">
+   	 						<form action="http://localhost:9000/playScreen" method="get">
+   	 							<input type="submit" value="Let's play" class="button"/>
+   	 						</form>
+   	 					</div>
+    					<div id="logout_button_main" class="center">
+    						<form action="http://localhost:9000/logout" method="get">
+    							<input type="submit" value="Logout" class="button"/>
+    						</form>
+    					</div>
+    					@content	   	 	
+   	 				</td>
+					<td></td>
+				</tr>
+    		</table>
     	</div>
     </div>    
 </body>
