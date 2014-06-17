@@ -33,12 +33,12 @@ public class Application extends Controller {
 		if(!users.containsKey(request().getQueryString("username"))){
 			if (users.isEmpty()){
 				session().put("username", request().getQueryString("username"));
-				users.put(session().get("username"), "player1");
+				users.put(session().get("username"), "Player 1");
 				
 				return ok(views.html.index.render(session().get("username")));
 			} else {
 				session().put("username", request().getQueryString("username"));
-				users.put(session().get("username"), "player2");
+				users.put(session().get("username"), "Player 2");
 				return ok(views.html.index.render(session().get("username")));
 			}	
 		} 
@@ -58,10 +58,10 @@ public class Application extends Controller {
 			return ok(views.html.login.render());
 		} else {
 			String op;
-			if (users.get(session().get("username")).equals("player1")) {
-				op = "player2";
+			if (users.get(session().get("username")).equals("Player 1")) {
+				op = "Player 2";
 			}else{
-				op="player1";
+				op="Player 1";
 			}
 			return ok(views.html.playScreen.render(session().get("username"), users.get(session().get("username")),op));
 		}
@@ -77,7 +77,7 @@ public class Application extends Controller {
 					public void invoke(String column) {
 						System.out.println(column);
 						String player;
-						if (username.equals("player1")) {
+						if (username.equals("Player 1")) {
 							player = "eins";
 						}else{
 							player = "zwei";

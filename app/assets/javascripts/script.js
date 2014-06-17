@@ -54,7 +54,7 @@ function blurEffect(){
 
 function doDivColor(gamer){
 	//Dynamisches einfärben der player divs					
-	if(gamer == "player1"){
+	if(gamer == "Player 1"){
 		$("#play_body_left").css("background-color", "yellow");
 		$("#play_body_left").css("box-shadow", "0px 0px 5px 5px yellow");
 		$("#play_body_right").css("background-color", "red");
