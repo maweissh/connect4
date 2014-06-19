@@ -27,10 +27,15 @@ function receiveEvent(event) {
 	var callbackPlayer = values[0];
 	var row = "f" + values[1] + values[2];
 	var victory = values[3];
-	alert(victory);
-	
+			
 	if(victory==1 || victory == 2){
-		alert("Player " +callbackPlayer +"hat gewonnen!");
+		if(confirm("Player "+callbackPlayer +" won." +"\n" +"Wanna play again?")){
+			//window.open("http://localhost:9000/playScreen");
+			location.reload();
+		}else{
+			history.back();
+		}
+		//alert("Player " +callbackPlayer +"hat gewonnen!");
 	}
 		
 	// at the beginning of the game, set the cursor for player 2 to "not-allowed"
