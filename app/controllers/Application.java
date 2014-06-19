@@ -102,7 +102,7 @@ public class Application extends Controller {
 							
 							for(WebSocket.Out<String> channel : playerList.values()){
 								// return the gamer which had clicked on the playfield and where
-								channel.write(username.toUpperCase().toString() + "," + player + ","+ column + "," + row);
+								channel.write(player + "," + column + "," + row);
 							}
 						}
 					}	
