@@ -24,7 +24,14 @@ function receiveEvent(event) {
 	$("#output").html(event.data);
 	var text = event.data;
 	var values = text.split(",");
+	var callbackPlayer = values[0];
 	var row = "f" + values[1] + values[2];
+	var victory = values[3];
+	alert(victory);
+	
+	if(victory==1 || victory == 2){
+		alert("Player " +callbackPlayer +"hat gewonnen!");
+	}
 		
 	// at the beginning of the game, set the cursor for player 2 to "not-allowed"
 	

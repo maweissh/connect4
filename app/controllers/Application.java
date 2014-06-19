@@ -96,13 +96,12 @@ public class Application extends Controller {
 							}
 						} else {
 							String row = Connect4Logic.addChip(column, player);
-//							System.out.println("vor victory");
 							int victory = Connect4Logic.checkVictory(column, row, player);
 						    System.out.println(victory);
 							
 							for(WebSocket.Out<String> channel : playerList.values()){
 								// return the gamer which had clicked on the playfield and where
-								channel.write(player + "," + column + "," + row);
+								channel.write(player +"," +column +"," +row +"," +victory);
 							}
 						}
 					}	
