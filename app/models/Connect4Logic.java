@@ -2,6 +2,8 @@ package models;
 
 import java.io.IOException;
 
+import scala.util.parsing.combinator.testing.Str;
+
 public class Connect4Logic {
 	private static String[][] array= new String[7][6];
 	
@@ -17,7 +19,7 @@ public class Connect4Logic {
 		return "column is full";
 	}
 	
-	public static int checkVictory(){	
+	public static int checkVictory(String x, String y, String player){	
 		try {
 			int erg;
 			//nach viererkette in der horizontalen suchen
@@ -33,15 +35,10 @@ public class Connect4Logic {
 			}
 			
 			//todo: Impelementierung der checkDiagonal Methoden
-			erg = checkDiagonalOne();
+			erg = chechDiagonal(x, y, player);
 			if (erg !=0) {
 				return erg;
-			}
-			
-			erg = checkDiagonalTwo();
-			if (erg !=0) {
-				return erg;
-			}
+			}			
 			
 			return 0;
 			
@@ -65,7 +62,7 @@ public class Connect4Logic {
 					p2=0;
 					continue;
 				} else {
-					if (array[c][r].equals("e")) {
+					if (array[c][r].equals("eins")) {
 						if (p2>0) {
 							p2=0;
 						}
@@ -101,7 +98,7 @@ public class Connect4Logic {
 					p2=0;
 					continue;
 				} else {
-					if (array[c][r].equals("e")) {
+					if (array[c][r].equals("eins")) {
 						if (p2>0) {
 							p2=0;
 						}
@@ -125,14 +122,37 @@ public class Connect4Logic {
 		return 0;		
 	}
 	
-	private static int checkDiagonalOne(){
+	private static int chechDiagonal(String column, String row, String player){
+		int x = Integer.parseInt(column);
+		int y = Integer.parseInt(row);
+		// Addieren in horizontaler, vertikaler, diagonal (links-oben, rechts-unten), diagonal (links-unten, rechts-oben) Richtung
+		// wenn Summe >= 3 (+ aktuelles Kästchen = 4) dann Sieg
+		
+		if (countCells(x - 1, y, -1, 0, player) + countCells(x + 1, y, 1, 0, player) >= 3 ||
+				countCells(x, y - 1, 0, -1, player) + countCells(x, y + 1, 0, 1, player) >= 3 ||
+				countCells(x - 1, y - 1, -1, -1, player) + countCells(x + 1, y + 1, 1, 1, player) >= 3 ||
+				countCells(x - 1, y + 1, -1, 1, player) + countCells(x + 1, y - 1, 1, -1, player) >= 3) {
+			if (player.equals("eins")) {
+				return 1;
+			} else {
+				return 2;
+			}			
+		}		
 		return 0;
+	}		 
+		 
+		// aktuelle x,y-Position, x,y-Richtung in die gesucht wird, Spielernummer
+	private static int countCells(int x, int y, int xdir, int ydir, String player) {		 
+		// noch innerhalb des Feldes?
+		if (x >= 0 && x < 7 && y >= 0 && y < 6) {		 
+			// wenn gleiche Farbe wie Spieler, dann eins addieren und in gleiche Richtung weitersuchen
+			if (array[x][y] == player){
+				return countCells(x + xdir, y + ydir, xdir, ydir, player) + 1;
+			}
+		}		 
+		// außerhalb oder andere Farbe
+		return 0;		
 	}
-	
-	private static int checkDiagonalTwo(){
-		return 0;
-	}
-	
 	
 	public static void clearArray(){
 		try {
