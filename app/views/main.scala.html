@@ -6,7 +6,8 @@
     <title>@title</title>
     <link rel='shortcut icon' type='image/png' href='@routes.Assets.at("images/vier-gewinnt.png")'>
     <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/layout.css")"/>
-    <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))'></script>
+    <script src="@routes.Assets.at("javascripts/jquery-1.11.1.js")"></script>
+	<script src="@routes.Assets.at("javascripts/main_script.js")"></script>
 </head>
 <body>
     <div id="background_main">
@@ -68,9 +69,18 @@
     									$.ajax({
     									 	type : 'GET',
     								        url : '@routes.Application.otherPlayer()',
-    								        success : function(data) {
-    								            $('#other_player_div').append('it wörkt')
+    								        success : function(data){
+    								        	answerAjax(data);
     								        },
+    								       /*  success : function(data) {
+    								        	if(data=="yes"){
+    								        		$('#ajax_answer').html('A second player is logged in.');
+    								        		
+    								        	}else{
+    								        		$('#ajax_answer').html('No other player is actually logged in.');    								        		   								        		
+    								        	}
+    								            
+    								        }, */
     								        error : function(data){
     								        	alert("it wont wörk")
     								        }
@@ -80,12 +90,14 @@
     						
     						</script>
     					</div>
-    					@content	   	 	
+    					<div id="ajax_answer" class="center"></div>
+    					<div>@content</div>
+    						   	 	
    	 				</td>
 					<td></td>
 				</tr>
     		</table>
     	</div>
-    </div>    
+       </div>
 </body>
 </html>
