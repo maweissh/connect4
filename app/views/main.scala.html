@@ -60,6 +60,26 @@
     							<input type="submit" value="Logout" class="button"/>
     						</form>
     					</div>
+    					<div id="other_player_div" class="center">
+    						<button id="other_player" class="button">Other player online?</button>
+    						<script type="text/javascript">
+    							$(document).ready(function(){
+    								$('#other_player').click(function(evt){
+    									$.ajax({
+    									 	type : 'GET',
+    								        url : '@routes.Application.otherPlayer()',
+    								        success : function(data) {
+    								            $('#other_player_div').append('it wörkt')
+    								        },
+    								        error : function(data){
+    								        	alert("it wont wörk")
+    								        }
+    									});	
+    								});
+    							});
+    						
+    						</script>
+    					</div>
     					@content	   	 	
    	 				</td>
 					<td></td>

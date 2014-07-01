@@ -117,4 +117,12 @@ public class Application extends Controller {
 			}
 		};
 	}
+	
+	public static Result otherPlayer(){
+		if (users.size() <2) {
+			return ok();
+		}else{
+			return forbidden();
+		}
+	}
 }

@@ -2,6 +2,7 @@
  * The Connect 4 javascript
  */
 var player = $("#player").value();
+
 /*
  * Play Screen
  */
@@ -131,3 +132,5 @@ function enableMouseCursor(){
 	$('#table_play').css('cursor', 'default');
 	$('a').css('cursor', 'default');
 };
+
+
