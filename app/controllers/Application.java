@@ -3,9 +3,7 @@ package controllers;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-
 import com.fasterxml.jackson.databind.node.ObjectNode;
-
 import play.libs.F.Callback;
 import play.libs.F.Callback0;
 import play.mvc.Controller;
@@ -31,7 +29,6 @@ public class Application extends Controller {
 		if(users.size() >= 2){
 			return badRequest(views.html.error.render("Sorry, but there is already a Game running..."));
 		}
-		
 		if(!users.containsKey(request().getQueryString("username"))){
 			if (users.isEmpty()){
 				session().put("username", request().getQueryString("username"));
@@ -44,7 +41,6 @@ public class Application extends Controller {
 				return ok(views.html.index.render(session().get("username")));
 			}	
 		} 
-		
 		return badRequest(views.html.error.render("The Nickname '" + request().getQueryString("username") + "' is not available. Please choose a different one."));
 	}
 
@@ -99,9 +95,7 @@ public class Application extends Controller {
 							}
 						} else {
 							String row = Connect4Logic.addChip(column, player);
-							int victory = Connect4Logic.checkVictory(column, row, player);
-						    System.out.println(victory);
-							
+							int victory = Connect4Logic.checkVictory(column, row, player);							
 							for(WebSocket.Out<String> channel : playerList.values()){
 								// return the gamer which had clicked on the playfield and where
 								ObjectNode event = play.libs.Json.newObject();
@@ -120,7 +114,6 @@ public class Application extends Controller {
 						Connect4Logic.clearArray();
 						playerList.clear();
 						out.close();
-						System.out.println("Disconnected!");
 					}
 				});
 			}
