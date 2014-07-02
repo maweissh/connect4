@@ -16,31 +16,26 @@ function wurf_in(s) {
 };
 
 function click(s) {
-	//webSocket.onmessage = receiveEvent;
-	webSocket.send(s);
-	
+	webSocket.send(s);	
 };
 
 function receiveEvent(event) {
+	var json = JSON.parse(event.data);
+	
 	$("#output").html(event.data);
-	var text = event.data;
-	var values = text.split(",");
-	var callbackPlayer = values[0];
-	var row = "f" + values[1] + values[2];
-	var victory = values[3];
-			
+	var callbackPlayer = json.player;
+	var row = "f" +json.column +json.row;
+	var victory = json.victory;
+	
 	if(victory==1 || victory == 2){
 		if(confirm("Player "+callbackPlayer +" won." +"\n" +"Wanna play again?")){
-			//window.open("http://localhost:9000/playScreen");
 			location.reload();
 		}else{
 			history.back();
 		}
-		//alert("Player " +callbackPlayer +"hat gewonnen!");
 	}
 		
-	// at the beginning of the game, set the cursor for player 2 to "not-allowed"
-	
+	// at the beginning of the game, set the cursor for player 2 to "not-allowed"	
 	// read the number of the player
 	if(player == "Player 2"){
 		$("a").css("cursor", "not-allowed");
@@ -48,12 +43,12 @@ function receiveEvent(event) {
 	}
 	
 	// change the picture where the player had clicked
-	if (values[0] == "eins") {
+	if (callbackPlayer == "eins") {
 		document.getElementById(row).childNodes[0].src = '/assets/images/vggelb.gif';
 	}else{
 		document.getElementById(row).childNodes[0].src = '/assets/images/vgrot.gif';
 	}	
-	blurEffect(values[0]);
+	blurEffect(callbackPlayer);
 };
 
 function hover(element, row){
@@ -93,21 +88,6 @@ function blurEffect(text){
 		}
 		break;
 	}
-	
-	// funktioniert so, nicht schöner code
-//	if(text.contains("eins") && color == "yellow"){
-//		$("#play_body_left").css("box-shadow", "0px 0px 5px 5px white");
-//		$("#play_body_right").css("box-shadow", "0px 0px 5px 5px red");
-//	} else if (text.contains("eins") && color == "red"){
-//		$("#play_body_left").css("box-shadow", "0px 0px 5px 5px red");
-//		$("#play_body_right").css("box-shadow", "0px 0px 5px 5px white");
-//	} else if (text.contains("zwei") && color == "yellow"){
-//		$("#play_body_left").css("box-shadow", "0px 0px 5px 5px yellow");
-//		$("#play_body_right").css("box-shadow", "0px 0px 5px 5px white");
-//	} else if (text.contains("zwei") && color == "red"){
-//		$("#play_body_left").css("box-shadow", "0px 0px 5px 5px white");
-//		$("#play_body_right").css("box-shadow", "0px 0px 5px 5px yellow");
-//	} 
 };
 
 

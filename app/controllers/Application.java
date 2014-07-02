@@ -3,6 +3,9 @@ package controllers;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import play.api.libs.json.Json;
 import play.libs.F.Callback;
 import play.libs.F.Callback0;
 import play.mvc.Controller;
@@ -75,7 +78,6 @@ public class Application extends Controller {
 					final WebSocket.Out<String> out) {
 				in.onMessage(new Callback<String>() {
 					public void invoke(String column) {
-						//System.out.println(column);
 						String player;
 						if (username.equals("Player 1")) {
 							player = "eins";
@@ -92,7 +94,11 @@ public class Application extends Controller {
 							}
 							// return the position of the gamer to control the blur effect of the div at the start
 							for(WebSocket.Out<String> channel : playerList.values()){
-								channel.write(username.toUpperCase().toString());
+								ObjectNode event = play.libs.Json.newObject();
+								event.put("player", username.toUpperCase().toString());
+								channel.write(event.toString());
+								//channel.write(username.toUpperCase().toString());
+								
 							}
 						} else {
 							String row = Connect4Logic.addChip(column, player);
@@ -101,7 +107,14 @@ public class Application extends Controller {
 							
 							for(WebSocket.Out<String> channel : playerList.values()){
 								// return the gamer which had clicked on the playfield and where
-								channel.write(player +"," +column +"," +row +"," +victory);
+								ObjectNode event = play.libs.Json.newObject();
+								event.put("player", player);
+								event.put("column", column);
+								event.put("row", row);
+								event.put("victory", victory);
+								
+								channel.write(event.toString());
+								//channel.write(player +"," +column +"," +row +"," +victory);
 							}
 						}
 					}	
