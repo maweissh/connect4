@@ -2,6 +2,7 @@ package controllers;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
@@ -15,7 +16,7 @@ import models.*;
 public class Application extends Controller {
 
 	private static Map<String, WebSocket.Out<String>> playerList = new HashMap<String, WebSocket.Out<String>>();
-	private static Map<String, String> users = new HashMap<String, String>();
+	private static TreeMap<String, String> users = new TreeMap<String, String>();
 		
 	public static Result init() {
 		// before the PlayScreen
@@ -55,22 +56,22 @@ public class Application extends Controller {
 
 	public static Result playScreen() {
 		if(!session().containsKey("username")){
-			
 			return ok(views.html.login.render());
 		} else {
-			String op;
-			if (users.get(session().get("username")).equals("Player 1")) {
-				op = "Player 2";
+			String otherplayer;
+			String player2;
+			if (users.firstEntry().getKey().equals(session().get("username"))) {
+				otherplayer = users.lastEntry().getKey();
+				player2 = users.lastEntry().getValue();
 			}else{
-				op="Player 1";
+				otherplayer = users.firstEntry().getKey();
+				player2 = users.firstEntry().getValue();
 			}
-			return ok(views.html.playScreen.render(session().get("username"), users.get(session().get("username")),op));
-		}
-					
+			return ok(views.html.playScreen.render(session().get("username"), users.get(session().get("username")), otherplayer, player2));
+		}					
 	}
 
 	public static WebSocket<String> playNow(final String username) {
-
 		return new WebSocket<String>() {
 			public void onReady(final WebSocket.In<String> in,
 					final WebSocket.Out<String> out) {
@@ -94,9 +95,7 @@ public class Application extends Controller {
 							for(WebSocket.Out<String> channel : playerList.values()){
 								ObjectNode event = play.libs.Json.newObject();
 								event.put("player", username.toUpperCase().toString());
-								channel.write(event.toString());
-								//channel.write(username.toUpperCase().toString());
-								
+								channel.write(event.toString());								
 							}
 						} else {
 							String row = Connect4Logic.addChip(column, player);
@@ -110,9 +109,8 @@ public class Application extends Controller {
 								event.put("column", column);
 								event.put("row", row);
 								event.put("victory", victory);
-								
+		
 								channel.write(event.toString());
-								//channel.write(player +"," +column +"," +row +"," +victory);
 							}
 						}
 					}	
