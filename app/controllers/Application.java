@@ -5,7 +5,6 @@ import java.util.Map;
 
 import com.fasterxml.jackson.databind.node.ObjectNode;
 
-import play.api.libs.json.Json;
 import play.libs.F.Callback;
 import play.libs.F.Callback0;
 import play.mvc.Controller;
@@ -19,7 +18,6 @@ public class Application extends Controller {
 	private static Map<String, String> users = new HashMap<String, String>();
 		
 	public static Result init() {
-		
 		// before the PlayScreen
 		if (!session().containsKey("username")) {
 			return ok(views.html.login.render());
@@ -71,7 +69,7 @@ public class Application extends Controller {
 					
 	}
 
-	public static WebSocket<String> guess(final String username) {
+	public static WebSocket<String> playNow(final String username) {
 
 		return new WebSocket<String>() {
 			public void onReady(final WebSocket.In<String> in,

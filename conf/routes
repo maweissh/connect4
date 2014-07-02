@@ -3,7 +3,7 @@
 # ~~~~
 
 GET     /                           controllers.Application.init()
-GET 	/guess						controllers.Application.guess(username)
+GET 	/playNow					controllers.Application.playNow(username)
 GET     /login                      controllers.Application.init()
 GET     /saveLogin					controllers.Application.saveLogin()
 GET 	/logout						controllers.Application.doLogout()

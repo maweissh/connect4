@@ -229,7 +229,7 @@
 					doDivColor(player);
 					var WS = window["MozWebSocket"] ? MozWebSocket : WebSocket;
 					 
-					webSocket = new WS("@routes.Application.guess(player).webSocketURL(request)");	
+					webSocket = new WS("@routes.Application.playNow(player).webSocketURL(request)");	
 					
 					webSocket.onmessage = receiveEvent;
 					if(confirm("If you are ready, please press 'OK'!") == true){

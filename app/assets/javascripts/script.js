@@ -21,8 +21,6 @@ function click(s) {
 
 function receiveEvent(event) {
 	var json = JSON.parse(event.data);
-	
-	$("#output").html(event.data);
 	var callbackPlayer = json.player;
 	var row = "f" +json.column +json.row;
 	var victory = json.victory;
