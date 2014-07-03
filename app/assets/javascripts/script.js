@@ -25,6 +25,12 @@ function receiveEvent(event) {
 	var row = "f" +json.column +json.row;
 	var victory = json.victory;
 	
+	if(json.alone =="true"){
+		disableMouseCursor();
+	}else{
+		enableMouseCursor();
+	}
+	
 	if (json.playerLeft == "true") {
 		if (confirm("A player has left the game. Wanna stay in?")) {
 			

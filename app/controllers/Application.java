@@ -82,8 +82,10 @@ public class Application extends Controller {
 						
 						// init a webSocket Connection at the start of the game
 						if(column.equals("init")){
+							String alone = "false";
 							if (playerList.isEmpty()) {
 								playerList.put(in.toString(), out);
+								alone= "true";
 							}else if(!playerList.containsKey(in.toString())){
 								playerList.put(in.toString(), out);
 							}
@@ -91,6 +93,7 @@ public class Application extends Controller {
 							for(WebSocket.Out<String> channel : playerList.values()){
 								ObjectNode event = play.libs.Json.newObject();
 								event.put("player", username.toUpperCase().toString());
+								event.put("alone", alone);
 								channel.write(event.toString());								
 							}
 						} else {
@@ -115,8 +118,7 @@ public class Application extends Controller {
 						ObjectNode event = play.libs.Json.newObject();
 						event.put("playerLeft", "true");	
 						
-						for(WebSocket.Out<String> channel : playerList.values()){
-												
+						for(WebSocket.Out<String> channel : playerList.values()){												
 							channel.write(event.toString());
 						}						
 						playerList.clear();						
