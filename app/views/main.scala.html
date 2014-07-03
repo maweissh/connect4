@@ -56,16 +56,12 @@
    	 							<input id="lets_play" type="submit" value="Let's play" class="button"/>
    	 						</form>
    	 					</div>
-    					<div id="logout_button_main" class="center">
-    						<form action="http://localhost:9000/logout" method="get">
-    							<input type="submit" value="Logout" class="button"/>
-    						</form>
-    					</div>
-    					<div id="other_player_div" class="center">
+   	 					<div id="other_player_div" class="center">
     						<input id="other_player" class="button" type="button" value="Enemy online?"/>
     						<script type="text/javascript">
     							$(document).ready(function(){
-    								$('#lets_play').prop('disabled', true);
+    								$('#lets_play').hide();
+    								//$('#lets_play').prop('disabled', true);
     								$('#other_player').click(function(evt){
     									$.ajax({
     									 	type : 'GET',
@@ -81,6 +77,11 @@
     								
     							});
     						</script>
+    					</div>
+    					<div id="logout_button_main" class="center">
+    						<form action="http://localhost:9000/logout" method="get">
+    							<input type="submit" value="Logout" class="button"/>
+    						</form>
     					</div>
     					<div id="ajax_answer" class="center"></div>
     					<div>@content</div>			   	 	

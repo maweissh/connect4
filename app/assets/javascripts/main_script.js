@@ -3,10 +3,9 @@
  */
 function answerAjax(answer){
 	if(answer=="yes"){
-		$('#lets_play').prop('disabled', false);
-		$('#ajax_answer').html('A second player is logged in.');		
+		$('#ajax_answer').html('A second player is logged in.');
+		$('#lets_play').show();		
 	}else{
-		$('#lets_play').prop('disabled', true);
 		$('#ajax_answer').html('No other player is actually logged in.');    								        		   								        		
 	}
 }
