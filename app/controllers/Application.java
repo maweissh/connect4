@@ -112,7 +112,14 @@ public class Application extends Controller {
 				in.onClose(new Callback0(){
 					public void invoke() {
 						Connect4Logic.clearArray();
-						playerList.clear();
+						ObjectNode event = play.libs.Json.newObject();
+						event.put("playerLeft", "true");	
+						
+						for(WebSocket.Out<String> channel : playerList.values()){
+												
+							channel.write(event.toString());
+						}						
+						playerList.clear();						
 						out.close();
 					}
 				});

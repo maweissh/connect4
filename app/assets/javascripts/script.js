@@ -25,6 +25,15 @@ function receiveEvent(event) {
 	var row = "f" +json.column +json.row;
 	var victory = json.victory;
 	
+	if (json.playerLeft == "true") {
+		if (confirm("A player has left the game. Wanna stay in?")) {
+			
+		}else{
+			history.back();
+		}
+		
+	}
+	
 	if(victory==1 || victory == 2){
 		if(confirm("Player "+callbackPlayer +" won." +"\n" +"Wanna play again?")){
 			location.reload();
