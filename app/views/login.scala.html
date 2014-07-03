@@ -17,9 +17,12 @@
 		</div>
 		<div id="login_form" class="center inner_div_login">
 			<form name="Formular" action="http://localhost:9000/saveLogin" method="get" onSubmit="return checkFormular()">
-				<h2>Choose your name:</h2>
-				<p><input type="text" id="username" name="username" required="required" placeholder="Your username" class="button" autofocus/></p>
-				<p>Press enter to play!</p>
+				<h2>Choose your name: 
+					<br/> 
+					<small>(max. 8 chars)</small>
+				</h2>
+				<p><input type="text" id="username" pattern="[a-zA-Z]{1,8}" name="username" required="required" placeholder="Your username" class="button" autofocus/></p>
+				<p><small>Press enter to play!</small></p>
 			</form>
 		</div>				
 	</div>
